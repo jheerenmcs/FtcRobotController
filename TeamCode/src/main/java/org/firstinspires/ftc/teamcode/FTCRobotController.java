@@ -4,6 +4,9 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.ServoImplEx;
+import com.qualcomm.robotcore.hardware.configuration.annotations.ServoType;
 
 @TeleOp (name = "Drive")
 public class FTCRobotController extends OpMode
@@ -12,6 +15,9 @@ public class FTCRobotController extends OpMode
     DcMotor Front_Right;
     DcMotor Back_Left;
     DcMotor Back_Right;
+    //Servo Drive_Const;
+    //Servo Drive_Pos;
+
 
     int time;
 
@@ -22,6 +28,8 @@ public class FTCRobotController extends OpMode
         Front_Right = hardwareMap.dcMotor.get("Front Right");
         Back_Left = hardwareMap.dcMotor.get("Back Left");
         Back_Right = hardwareMap.dcMotor.get("Back Right");
+        //Drive_Const = hardwareMap.servo.get("Const");
+        //Drive_Pos = hardwareMap.servo.get("Pos");
 
         telemetry.addData("Status", "Ready to run!");
         telemetry.update();
@@ -62,6 +70,6 @@ public class FTCRobotController extends OpMode
                 Back_Left.getCurrentPosition());
         telemetry.addData("[Back Odometer]",
                 Front_Left.getCurrentPosition());
-        
+
     }
 }
