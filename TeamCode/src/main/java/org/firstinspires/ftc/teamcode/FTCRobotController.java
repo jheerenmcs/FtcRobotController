@@ -29,8 +29,10 @@ public class FTCRobotController extends OpMode
         Front_Right = hardwareMap.dcMotor.get("Front Right");
         Back_Left = hardwareMap.dcMotor.get("Back Left");
         Back_Right = hardwareMap.dcMotor.get("Back Right");
-        Thrower = hardwareMap.dcMotor.get("Launcher");
-        Servo_Door = hardwareMap.servo.get("Const");
+        Thrower = hardwareMap.dcMotor.get("Thrower");
+        Servo_Door = hardwareMap.servo.get("Servo Door");
+
+        Thrower.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         telemetry.addData("Status", "Ready to run!");
         telemetry.update();
@@ -45,22 +47,31 @@ public class FTCRobotController extends OpMode
         Back_Right.setDirection(DcMotorSimple.Direction.REVERSE);
         Back_Left.setDirection(DcMotorSimple.Direction.FORWARD);
 
+        Thrower.setDirection(DcMotorSimple.Direction.FORWARD);
+
         Front_Right.setPower(gamepad1.right_stick_y);
         Front_Left.setPower(gamepad1.left_stick_y);
         Back_Right.setPower(gamepad1.right_stick_y);
         Back_Left.setPower(gamepad1.left_stick_y);
 
-        Servo Door = hardwareMap.get(Servo Door);
+        //Servo_Door = hardwareMap.get(Servo_Door);
 
         if (gamepad2.right_trigger > 0)
         {
-            Servo_Door.setPosition(0)
+            Servo_Door.setPosition(0);
         }
 
         else if (gamepad2.left_trigger > 0)
         {
             Servo_Door.setPosition(1);
         }
+
+
+        if (gamepad2.x)
+        {
+            Thrower.setPower(1.0);
+        }
+
 
         if (gamepad1.right_trigger > 0)
         {
@@ -77,7 +88,6 @@ public class FTCRobotController extends OpMode
             Back_Left.setPower(-0.5);
         }
 
-        while
 
         telemetry.addData("[Front Left Odometer]",
                 Front_Right.getCurrentPosition());
