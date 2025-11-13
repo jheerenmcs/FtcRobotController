@@ -15,9 +15,9 @@ public class FTCRobotController extends OpMode
     DcMotor Front_Right;
     DcMotor Back_Left;
     DcMotor Back_Right;
-    Servo Servo_Door;
 
-    //Servo Drive_Pos;
+    DcMotor Thrower;
+    Servo Servo_Door;
 
 
     int time;
@@ -29,6 +29,7 @@ public class FTCRobotController extends OpMode
         Front_Right = hardwareMap.dcMotor.get("Front Right");
         Back_Left = hardwareMap.dcMotor.get("Back Left");
         Back_Right = hardwareMap.dcMotor.get("Back Right");
+        Thrower = hardwareMap.dcMotor.get("Launcher");
         Servo_Door = hardwareMap.servo.get("Const");
 
         telemetry.addData("Status", "Ready to run!");
