@@ -71,6 +71,10 @@ public class FTCRobotController extends OpMode
         {
             Thrower.setPower(1.0);
         }
+        else
+        {
+            Thrower.setPower(0);
+        }
 
 
         if (gamepad1.right_trigger > 0)
