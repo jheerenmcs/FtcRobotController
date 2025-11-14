@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode;
-
+/*The package is like the main core.
+It contains all of the files that you will call from.
+ */
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -7,23 +9,48 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.ServoImplEx;
 import com.qualcomm.robotcore.hardware.configuration.annotations.ServoType;
-
+/*
+All of the imports are what you are calling to be in your code.
+Think of the package like a library, and all the imports are the books.
+ */
 @TeleOp (name = "Drive")
+/*This is an operation mode. we uh dont rlly know how that works yet
+We are naming this mode "Drive".
+ */
 public class FTCRobotController extends OpMode
+    /*
+    Inside the public class is where all your main code will go
+     */
 {
     DcMotor Front_Left;
     DcMotor Front_Right;
     DcMotor Back_Left;
     DcMotor Back_Right;
 
+    /*
+    These are calling all of the motors/what you are going to use.
+    We are also giving them all names.
+     */
+
     DcMotor Thrower;
     Servo Servo_Door;
+    //Ditto, but for our thrower and servo door.
 
 
     int time;
+    //This initializes an integer (number) named time.
 
     @Override
+    /*
+    This overrides what the original OpMode says (the template)
+    this lets you make your own code.
+    */
     public void init()
+            /*
+            This code initializes what everything is going to do
+            The void means it wont return anything
+            This code works when you press Init on the driver console
+             */
     {
         Front_Left = hardwareMap.dcMotor.get("Front Left");
         Front_Right = hardwareMap.dcMotor.get("Front Right");
@@ -32,11 +59,15 @@ public class FTCRobotController extends OpMode
         Thrower = hardwareMap.dcMotor.get("Thrower");
         Servo_Door = hardwareMap.servo.get("Servo Door");
 
-        Thrower.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        /*
+        This Hardware Mapping
+         */
 
+        Thrower.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//  This Hardware Mapping
         telemetry.addData("Status", "Ready to run!");
         telemetry.update();
-
+//Forwards the data from the controller to the Driver's Station
     }
 
     @Override
