@@ -16,7 +16,7 @@ public class Ryan_Auto extends LinearOpMode
     DcMotor Back_Left;
     DcMotor Back_Right;
     DcMotor Thrower;
-    Servo Door;
+    //Servo Door;
 
     int saveposition;
 
@@ -28,7 +28,7 @@ public class Ryan_Auto extends LinearOpMode
         Back_Left = hardwareMap.dcMotor.get("Back Left");
         Back_Right = hardwareMap.dcMotor.get("Back Right");
         Thrower = hardwareMap.dcMotor.get("Thrower");
-        Door = hardwareMap.servo.get("Door");
+       // Door = hardwareMap.servo.get("Door");
 
         //Set motor directions
         Front_Right.setDirection(DcMotorSimple.Direction.REVERSE);
