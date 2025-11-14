@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@Disabled
+
 @Autonomous(name = "Lighting Auto (WIP)")
 public class Ryan_Auto extends LinearOpMode
 {
