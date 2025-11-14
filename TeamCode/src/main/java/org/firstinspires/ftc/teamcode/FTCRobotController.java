@@ -47,7 +47,7 @@ public class FTCRobotController extends OpMode
         Back_Right.setDirection(DcMotorSimple.Direction.REVERSE);
         Back_Left.setDirection(DcMotorSimple.Direction.FORWARD);
 
-        Thrower.setDirection(DcMotorSimple.Direction.FORWARD);
+        Thrower.setDirection(DcMotorSimple.Direction.REVERSE);
 
         Front_Right.setPower(gamepad1.right_stick_y);
         Front_Left.setPower(gamepad1.left_stick_y);
@@ -67,12 +67,16 @@ public class FTCRobotController extends OpMode
         }
 
 
-        if (gamepad2.xWasPressed())
+        if (gamepad2.x)
         {
+            Thrower.setTargetPosition(-4800);
+            Thrower.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             Thrower.setPower(1.0);
         }
         else
         {
+            Thrower.setTargetPosition(0);
+            Thrower.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             Thrower.setPower(0);
         }
 
