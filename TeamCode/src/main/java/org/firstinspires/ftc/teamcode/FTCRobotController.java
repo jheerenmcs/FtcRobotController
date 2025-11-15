@@ -92,7 +92,7 @@ public class FTCRobotController extends OpMode
         //Servo_Door = hardwareMap.get(Servo_Door);
 
         //Lift Position High
-        if (gamepad2.left_stick_y < 0)
+        /*if (gamepad2.left_stick_y < 0)
         {
             Lift.setTargetPosition(-4800);
             Lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -123,6 +123,8 @@ public class FTCRobotController extends OpMode
             Lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             Lift.setPower(1);
         }
+        
+         */
 
         if (gamepad2.right_trigger > 0)
         {
