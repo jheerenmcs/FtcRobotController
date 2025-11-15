@@ -56,10 +56,10 @@ public class Ryan_Auto extends LinearOpMode
 
         waitForStart();
 
-        Front_Right.setPower(0.5);
-        Front_Left.setPower(0.5);
-        Back_Right.setPower(0.5);
-        Back_Left.setPower(0.5);
+        Front_Right.setPower(-0.5);
+        Front_Left.setPower(-0.5);
+        Back_Right.setPower(-0.5);
+        Back_Left.setPower(-0.5);
 
         sleep(1000);
     }
