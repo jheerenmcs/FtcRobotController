@@ -14,7 +14,7 @@ All of the imports are what you are calling to be in your code.
 Think of the package like a library, and all the imports are the books.
  */
 @TeleOp (name = "Drive")
-/*This is an operation mode. we uh dont rlly know how that works yet
+/*This is an operation mode. we uh don't really know how that works yet
 We are naming this mode "Drive".
  */
 public class FTCRobotController extends OpMode
@@ -33,6 +33,7 @@ public class FTCRobotController extends OpMode
      */
 
     DcMotor Thrower;
+    DcMotor Lift;
     Servo Servo_Door;
     //Ditto, but for our thrower and servo door.
 
@@ -57,11 +58,13 @@ public class FTCRobotController extends OpMode
         Back_Left = hardwareMap.dcMotor.get("Back Left");
         Back_Right = hardwareMap.dcMotor.get("Back Right");
         Thrower = hardwareMap.dcMotor.get("Thrower");
+        Lift = hardwareMap.dcMotor.get("Lift");
         Servo_Door = hardwareMap.servo.get("Servo Door");
 
         /*
         This Hardware Mapping
          */
+        Lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         Thrower.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 //  This Hardware Mapping
@@ -78,6 +81,7 @@ public class FTCRobotController extends OpMode
         Back_Right.setDirection(DcMotorSimple.Direction.REVERSE);
         Back_Left.setDirection(DcMotorSimple.Direction.FORWARD);
 
+        Lift.setDirection(DcMotorSimple.Direction.REVERSE);
         Thrower.setDirection(DcMotorSimple.Direction.REVERSE);
 
         Front_Right.setPower(gamepad1.right_stick_y);
@@ -86,6 +90,39 @@ public class FTCRobotController extends OpMode
         Back_Left.setPower(gamepad1.left_stick_y);
 
         //Servo_Door = hardwareMap.get(Servo_Door);
+
+        //Lift Position High
+        if (gamepad2.left_stick_y < 0)
+        {
+            Lift.setTargetPosition(-4800);
+            Lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            Lift.setPower(1);
+        }
+        if (gamepad2.left_stick_y > 0)
+        {
+            Lift.setTargetPosition(0);
+            Lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            Lift.setPower(1);
+            // Lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        }
+        if (gamepad2.dpad_down)
+        {
+            Lift.setTargetPosition(-2400);
+            Lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            Lift.setPower(1);
+        }
+        if (gamepad2.dpad_up)
+        {
+            Lift.setTargetPosition(-200);
+            Lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            Lift.setPower(1);
+        }
+        if (gamepad2.x)
+        {
+            Lift.setTargetPosition(-2100);
+            Lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            Lift.setPower(1);
+        }
 
         if (gamepad2.right_trigger > 0)
         {
