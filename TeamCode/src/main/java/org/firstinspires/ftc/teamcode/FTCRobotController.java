@@ -105,6 +105,9 @@ public class FTCRobotController extends OpMode
             Back_Right.setPower(0.5);
             Back_Left.setPower(-0.5);
         }
+        //This is slow strafe
+
+
         if (gamepad1.right_trigger > 0)
         {
             Front_Right.setPower(1);
@@ -119,6 +122,7 @@ public class FTCRobotController extends OpMode
             Back_Right.setPower(1);
             Back_Left.setPower(-1);
         }
+        //This is fast strafe
 
         //Servo_Door = hardwareMap.get(Servo_Door);
 
