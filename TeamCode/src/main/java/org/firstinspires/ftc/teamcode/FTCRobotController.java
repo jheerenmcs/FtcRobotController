@@ -93,34 +93,34 @@ public class FTCRobotController extends OpMode
 
         if (gamepad1.right_bumper)
         {
-            Front_Right.setPower(0.5);
-            Front_Left.setPower(-0.5);
-            Back_Right.setPower(-0.5);
-            Back_Left.setPower(0.5);
+            Front_Right.setPower(-1);
+            Front_Left.setPower(-1);
+            Back_Right.setPower(1);
+            Back_Left.setPower(1);
         }
         else if (gamepad1.left_bumper)
         {
-            Front_Right.setPower(-0.5);
-            Front_Left.setPower(0.5);
-            Back_Right.setPower(0.5);
-            Back_Left.setPower(-0.5);
+            Front_Right.setPower(1);
+            Front_Left.setPower(1);
+            Back_Right.setPower(-1);
+            Back_Left.setPower(-1);
         }
         //This is slow strafe
 
 
         if (gamepad1.right_trigger > 0)
         {
-            Front_Right.setPower(1);
-            Front_Left.setPower(-1);
-            Back_Right.setPower(-1);
-            Back_Left.setPower(1);
+            Front_Right.setPower(0.5);
+            Front_Left.setPower(0.5);
+            Back_Right.setPower(-0.5);
+            Back_Left.setPower(-0.5);
         }
         else if (gamepad1.left_trigger > 0)
         {
-            Front_Right.setPower(-1);
-            Front_Left.setPower(1);
-            Back_Right.setPower(1);
-            Back_Left.setPower(-1);
+            Front_Right.setPower(-0.5);
+            Front_Left.setPower(-0.5);
+            Back_Right.setPower(0.5);
+            Back_Left.setPower(0.5);
         }
         //This is fast strafe
 
@@ -211,3 +211,4 @@ public class FTCRobotController extends OpMode
 
     }
 }
+
