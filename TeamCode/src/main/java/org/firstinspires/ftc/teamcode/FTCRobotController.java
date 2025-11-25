@@ -108,19 +108,19 @@ public class FTCRobotController extends OpMode
         //This is slow strafe
 
 
-        if (gamepad1.right_trigger > 0)
+        if (gamepad1.left_trigger > 0)
         {
-            Front_Right.setPower(0.5);
-            Front_Left.setPower(0.5);
-            Back_Right.setPower(-0.5);
-            Back_Left.setPower(-0.5);
+            Front_Right.setPower(0.65);
+            Front_Left.setPower(0.65);
+            Back_Right.setPower(-0.65);
+            Back_Left.setPower(-0.65);
         }
-        else if (gamepad1.left_trigger > 0)
+        else if (gamepad1.right_trigger > 0)
         {
-            Front_Right.setPower(-0.5);
-            Front_Left.setPower(-0.5);
-            Back_Right.setPower(0.5);
-            Back_Left.setPower(0.5);
+            Front_Right.setPower(-0.65);
+            Front_Left.setPower(-0.65);
+            Back_Right.setPower(0.65);
+            Back_Left.setPower(0.65);
         }
         //This is fast strafe
 
@@ -186,21 +186,21 @@ public class FTCRobotController extends OpMode
         }
 
 
-        if (gamepad1.right_trigger > 0)
+        /*if (gamepad1.right_trigger > 0)
         {
-            Front_Right.setPower(1);
-            Front_Left.setPower(-1);
-            Back_Right.setPower(-1);
-            Back_Left.setPower(1);
+            Front_Right.setPower(0.5);
+            Front_Left.setPower(-0.5);
+            Back_Right.setPower(-0.5);
+            Back_Left.setPower(0.5);
         }
         else if (gamepad1.left_trigger > 0)
         {
-            Front_Right.setPower(-1);
-            Front_Left.setPower(1);
-            Back_Right.setPower(1);
-            Back_Left.setPower(-1);
+            Front_Right.setPower(-0.5);
+            Front_Left.setPower(0.5);
+            Back_Right.setPower(0.5);
+            Back_Left.setPower(-0.5);
         }
-
+*/
 
         telemetry.addData("[Front Left Odometer]",
                 Front_Right.getCurrentPosition());
