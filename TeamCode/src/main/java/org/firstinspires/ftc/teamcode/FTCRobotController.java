@@ -36,7 +36,7 @@ public class FTCRobotController extends OpMode
     DcMotor Lift;
     Servo Servo_Door;
     //Ditto, but for our thrower and servo door.
-
+    Servo Servo_Holding;
 
     int time;
     //This initializes an integer (number) named time.
@@ -60,6 +60,7 @@ public class FTCRobotController extends OpMode
         Thrower = hardwareMap.dcMotor.get("Thrower");
         Lift = hardwareMap.dcMotor.get("Lift");
         Servo_Door = hardwareMap.servo.get("Servo Door");
+        Servo_Holding = hardwareMap.servo.get("Servo_Holding");
 
         /*
         This Hardware Mapping
@@ -160,7 +161,7 @@ public class FTCRobotController extends OpMode
         }
 
          */
-
+//Firing Servo Controls
         if (gamepad2.right_trigger > 0)
         {
             Servo_Door.setPosition(0);
@@ -171,7 +172,18 @@ public class FTCRobotController extends OpMode
             Servo_Door.setPosition(1);
         }
 
+        //Holding Servo Controls
+        if (gamepad2.right_bumper)
+        {
+            Servo_Holding.setPosition(0);
+        }
+        else if (gamepad2.left_bumper)
+        {
+            Servo_Holding.setPosition(1);
+        }
 
+
+        //Thrower Power
         if (gamepad2.x)
         {
             Thrower.setTargetPosition(-4800);
