@@ -37,7 +37,7 @@ public class Ryan_Auto extends LinearOpMode
         Back_Left.setDirection(DcMotorSimple.Direction.FORWARD);
         Thrower.setDirection(DcMotorSimple.Direction.FORWARD);
 
-        //Telemtry start data
+        //Telemetry start data
         telemetry.addData("[Front Right Motor Power]",
                 Front_Right.getPower());
         telemetry.addData("[Front Left Motor Power]",
