@@ -1,15 +1,13 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 
-@Disabled
 @Autonomous(name = "Lighting Auto (WIP)")
-public class Auto_Shooter extends LinearOpMode
+public class Ryan_Auto_10 extends LinearOpMode
 {
     DcMotor Front_Left;
     DcMotor Front_Right;
@@ -55,6 +53,8 @@ public class Auto_Shooter extends LinearOpMode
         telemetry.update();
 
         waitForStart();
+
+        wait(10);
 
         Front_Right.setPower(-0.5);
         Front_Left.setPower(0);
