@@ -164,12 +164,12 @@ public class FTCRobotController extends OpMode
 //Firing Servo Controls
         if (gamepad2.right_trigger > 0)
         {
-            Servo_Door.setPosition(0);
+            Servo_Door.setPosition(1);
         }
 
         else if (gamepad2.left_trigger > 0)
         {
-            Servo_Door.setPosition(1);
+            Servo_Door.setPosition(0);
         }
 
         /*Holding Servo Controls
