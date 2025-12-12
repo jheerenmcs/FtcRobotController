@@ -8,8 +8,8 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 
-@Disabled
-@Autonomous(name = "Lighting Auto (WIP)")
+
+@Autonomous(name = "Auto Ball Shooter")
 public class Auto_Shooter extends LinearOpMode
 {
     DcMotor Front_Left;
@@ -31,7 +31,7 @@ public class Auto_Shooter extends LinearOpMode
         Back_Left = hardwareMap.dcMotor.get("Back Left");
         Back_Right = hardwareMap.dcMotor.get("Back Right");
         Thrower = hardwareMap.dcMotor.get("Thrower");
-       // Door = hardwareMap.servo.get("Door");
+        // Door = hardwareMap.servo.get("Door");
 
         //Set motor directions
         Front_Right.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -61,9 +61,9 @@ public class Auto_Shooter extends LinearOpMode
 
         //First Step
         Front_Right.setPower(-0.5);
-        Front_Left.setPower(0);
+        Front_Left.setPower(-0.5);
         Back_Right.setPower(-0.5);
-        Back_Left.setPower(0);
+        Back_Left.setPower(-0.5);
         runtime.reset();
         while (opModeIsActive() && (runtime.seconds() < 2.5 ))
         {
@@ -72,12 +72,12 @@ public class Auto_Shooter extends LinearOpMode
         }
 
         //Second Step
-        Front_Right.setPower(0.5);
+        Front_Right.setPower(-0.5);
         Front_Left.setPower(0);
         Back_Right.setPower(-0.5);
         Back_Left.setPower(0);
         runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < 0.25))
+        while (opModeIsActive() && (runtime.seconds() < 0.50))
         {
             telemetry.addData("Path", "Leg 2: %4.1f S Elapsed", runtime.seconds());
             telemetry.update();
@@ -91,7 +91,7 @@ public class Auto_Shooter extends LinearOpMode
 
         telemetry.addData("Path", "Complete");
         telemetry.update();
-        
+
         sleep(1000);
     }
 }
