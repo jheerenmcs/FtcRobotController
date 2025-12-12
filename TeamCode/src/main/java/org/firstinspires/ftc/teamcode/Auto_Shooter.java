@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 
 @Disabled
@@ -17,6 +18,8 @@ public class Auto_Shooter extends LinearOpMode
     DcMotor Back_Right;
     DcMotor Thrower;
     //Servo Door;
+
+    private ElapsedTime     runtime = new ElapsedTime();
 
     int saveposition;
 
@@ -56,11 +59,39 @@ public class Auto_Shooter extends LinearOpMode
 
         waitForStart();
 
+        //First Step
         Front_Right.setPower(-0.5);
         Front_Left.setPower(0);
         Back_Right.setPower(-0.5);
         Back_Left.setPower(0);
+        runtime.reset();
+        while (opModeIsActive() && (runtime.seconds() < 2.5 ))
+        {
+            telemetry.addData("Path", "Leg 1: %4.1f S Elapsed", runtime.seconds());
+            telemetry.update();
+        }
 
+        //Second Step
+        Front_Right.setPower(0.5);
+        Front_Left.setPower(0);
+        Back_Right.setPower(-0.5);
+        Back_Left.setPower(0);
+        runtime.reset();
+        while (opModeIsActive() && (runtime.seconds() < 0.25))
+        {
+            telemetry.addData("Path", "Leg 2: %4.1f S Elapsed", runtime.seconds());
+            telemetry.update();
+        }
+
+        //Final Step
+        Front_Right.setPower(0);
+        Front_Left.setPower(0);
+        Back_Right.setPower(0);
+        Back_Left.setPower(0);
+
+        telemetry.addData("Path", "Complete");
+        telemetry.update();
+        
         sleep(1000);
     }
 }
