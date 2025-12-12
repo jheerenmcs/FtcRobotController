@@ -83,7 +83,7 @@ public class FTCRobotController extends OpMode
         Back_Left.setDirection(DcMotorSimple.Direction.FORWARD);
 
         Lift.setDirection(DcMotorSimple.Direction.REVERSE);
-        Thrower.setDirection(DcMotorSimple.Direction.FORWARD);
+        Thrower.setDirection(DcMotorSimple.Direction.REVERSE);
 
         Front_Right.setPower(gamepad1.right_stick_y);
         Front_Left.setPower(gamepad1.left_stick_y);
