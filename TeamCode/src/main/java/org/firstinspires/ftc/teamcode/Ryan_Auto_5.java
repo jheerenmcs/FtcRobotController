@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 
-@Autonomous(name = "Lighting Auto (WIP)")
+@Autonomous(name = "Auto 5s Delay")
 public class Ryan_Auto_5 extends LinearOpMode
 {
     DcMotor Front_Left;

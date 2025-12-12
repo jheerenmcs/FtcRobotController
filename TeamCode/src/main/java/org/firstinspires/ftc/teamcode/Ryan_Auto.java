@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
 
-@Autonomous(name = "Lighting Auto (WIP)")
+@Autonomous(name = "Autonomous")
 public class Ryan_Auto extends LinearOpMode
 {
     DcMotor Front_Left;
