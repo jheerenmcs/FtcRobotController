@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-
+//This program is an autonomous that is a copy of "Ryan Auto." All that's different is there is a five second delay before starting moving.
 @Autonomous(name = "Auto 5s Delay")
 public class Ryan_Auto_5 extends LinearOpMode
 {

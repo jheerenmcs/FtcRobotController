@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-
+//This program is the same as the other "Ryan Auto" programs except this program features a ten second delay.
 @Autonomous(name = "Auto 10s Delay")
 public class Ryan_Auto_10 extends LinearOpMode
 {
