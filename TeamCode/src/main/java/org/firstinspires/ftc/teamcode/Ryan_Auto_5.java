@@ -56,6 +56,7 @@ public class Ryan_Auto_5 extends LinearOpMode
         telemetry.update();
 
         waitForStart();
+        sleep(5000);
 
 
         Front_Right.setPower(-0.5);
