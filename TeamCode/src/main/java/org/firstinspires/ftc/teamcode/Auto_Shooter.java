@@ -97,11 +97,14 @@ public class Auto_Shooter extends LinearOpMode
 
         //FIRE!!!!!
         runtime.reset();
-
         if (runtime.equals(1))
         {
             Servo_Door.setPosition(1);
+        }
+        else if (runtime.equals(2))
+        {
             Servo_Door.setPosition(0.1);
+        }
 
         sleep(1000);
     }
