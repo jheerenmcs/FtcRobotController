@@ -77,7 +77,7 @@ public class Auto_Shooter extends LinearOpMode
         Back_Right.setPower(-0.5);
         Back_Left.setPower(0);
         runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < 0.50))
+        while (opModeIsActive() && (runtime.seconds() < 1.25))
         {
             telemetry.addData("Path", "Leg 2: %4.1f S Elapsed", runtime.seconds());
             telemetry.update();
