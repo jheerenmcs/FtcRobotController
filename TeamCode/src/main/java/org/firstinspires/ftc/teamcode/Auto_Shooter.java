@@ -109,5 +109,4 @@ public class Auto_Shooter extends LinearOpMode
         sleep(1000);
         }
     }
-}
-
+    
