@@ -59,7 +59,7 @@ public class FTCRobotController extends OpMode
         Back_Right = hardwareMap.dcMotor.get("Back Right");
         Thrower = hardwareMap.dcMotor.get("Thrower");
         Lift = hardwareMap.dcMotor.get("Lift");
-        Servo_Door = hardwareMap.servo.get("Servo Door");
+        Servo_Door = hardwareMap.servo.get("Servo Servo_Door");
         //Servo_Holding = hardwareMap.servo.get("Servo_Holding");
 
         /*

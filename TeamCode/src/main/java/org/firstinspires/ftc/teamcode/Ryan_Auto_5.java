@@ -15,7 +15,7 @@ public class Ryan_Auto_5 extends LinearOpMode
     DcMotor Back_Left;
     DcMotor Back_Right;
     DcMotor Thrower;
-    //Servo Door;
+    //Servo Servo_Door;
 
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -29,7 +29,7 @@ public class Ryan_Auto_5 extends LinearOpMode
         Back_Left = hardwareMap.dcMotor.get("Back Left");
         Back_Right = hardwareMap.dcMotor.get("Back Right");
         Thrower = hardwareMap.dcMotor.get("Thrower");
-        // Door = hardwareMap.servo.get("Door");
+        // Servo_Door = hardwareMap.servo.get("Servo_Door");
 
         //Set motor directions
         Front_Right.setDirection(DcMotorSimple.Direction.REVERSE);

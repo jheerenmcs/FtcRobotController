@@ -1,10 +1,10 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 
@@ -17,7 +17,7 @@ public class Auto_Shooter extends LinearOpMode
     DcMotor Back_Left;
     DcMotor Back_Right;
     DcMotor Thrower;
-    //Servo Door;
+    Servo Servo_Door;
 
     private ElapsedTime     runtime = new ElapsedTime();
 
@@ -31,14 +31,14 @@ public class Auto_Shooter extends LinearOpMode
         Back_Left = hardwareMap.dcMotor.get("Back Left");
         Back_Right = hardwareMap.dcMotor.get("Back Right");
         Thrower = hardwareMap.dcMotor.get("Thrower");
-        // Door = hardwareMap.servo.get("Door");
+        // Servo_Door = hardwareMap.servo.get("Servo_Door");
 
         //Set motor directions
         Front_Right.setDirection(DcMotorSimple.Direction.REVERSE);
         Front_Left.setDirection(DcMotorSimple.Direction.FORWARD);
         Back_Right.setDirection(DcMotorSimple.Direction.REVERSE);
         Back_Left.setDirection(DcMotorSimple.Direction.FORWARD);
-        Thrower.setDirection(DcMotorSimple.Direction.FORWARD);
+        Thrower.setDirection(DcMotorSimple.Direction.REVERSE);
 
         //Telemetry start data
         telemetry.addData("[Front Right Motor Power]",
@@ -76,6 +76,9 @@ public class Auto_Shooter extends LinearOpMode
         Front_Left.setPower(0);
         Back_Right.setPower(-0.5);
         Back_Left.setPower(0);
+        Thrower.setTargetPosition(-4800);
+        Thrower.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        Thrower.setPower(1.0);
         runtime.reset();
         while (opModeIsActive() && (runtime.seconds() < 1.25))
         {
@@ -83,7 +86,7 @@ public class Auto_Shooter extends LinearOpMode
             telemetry.update();
         }
 
-        //Final Step
+        //Third Step
         Front_Right.setPower(0);
         Front_Left.setPower(0);
         Back_Right.setPower(0);
@@ -91,6 +94,14 @@ public class Auto_Shooter extends LinearOpMode
 
         telemetry.addData("Path", "Complete");
         telemetry.update();
+
+        //FIRE!!!!!
+        runtime.reset();
+
+        if (runtime.equals(1))
+        {
+            Servo_Door.setPosition(1);
+            Servo_Door.setPosition(0.1);
 
         sleep(1000);
     }
