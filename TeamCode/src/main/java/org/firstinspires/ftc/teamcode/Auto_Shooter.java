@@ -80,7 +80,7 @@ public class Auto_Shooter extends LinearOpMode
         sleep(250);
         Thrower.setTargetPosition(-48000);
         Thrower.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        Thrower.setPower(0.62);
+        Thrower.setPower(1);
         runtime.reset();
         while (opModeIsActive() && (runtime.seconds() < 1.25))
         {
