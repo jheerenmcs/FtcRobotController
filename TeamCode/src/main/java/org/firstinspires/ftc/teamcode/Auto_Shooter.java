@@ -104,5 +104,7 @@ public class Auto_Shooter extends LinearOpMode
             Servo_Door.setPosition(0.1);
 
         sleep(1000);
+        }
     }
 }
+
