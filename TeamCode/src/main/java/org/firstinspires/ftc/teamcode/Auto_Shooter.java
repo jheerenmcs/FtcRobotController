@@ -31,7 +31,7 @@ public class Auto_Shooter extends LinearOpMode
         Back_Left = hardwareMap.dcMotor.get("Back Left");
         Back_Right = hardwareMap.dcMotor.get("Back Right");
         Thrower = hardwareMap.dcMotor.get("Thrower");
-        // Servo_Door = hardwareMap.servo.get("Servo_Door");
+        Servo_Door = hardwareMap.servo.get("Servo_Door");
 
         //Set motor directions
         Front_Right.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -97,16 +97,17 @@ public class Auto_Shooter extends LinearOpMode
 
         //FIRE!!!!!
         runtime.reset();
-        if (runtime.equals(1))
-        {
-            Servo_Door.setPosition(1);
+        while (runtime.seconds() < 1) {
+            if (runtime.equals(1)) {
+                Servo_Door.setPosition(1);
+            }
         }
-        else if (runtime.equals(2))
-        {
-            Servo_Door.setPosition(0.1);
-        }
+        runtime.reset();
 
-        sleep(1000);
+        while (runtime.seconds() < 1) {
+            if (runtime.equals(1)) {
+                Servo_Door.setPosition(0);
+            }
         }
     }
-    
+}
