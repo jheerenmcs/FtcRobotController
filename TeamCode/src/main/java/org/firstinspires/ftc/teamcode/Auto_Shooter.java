@@ -64,6 +64,7 @@ public class Auto_Shooter extends LinearOpMode
         Front_Left.setPower(-0.5);
         Back_Right.setPower(-0.5);
         Back_Left.setPower(-0.5);
+        sleep(100);
         runtime.reset();
         while (opModeIsActive() && (runtime.seconds() < 2.5 ))
         {
@@ -76,15 +77,18 @@ public class Auto_Shooter extends LinearOpMode
         Front_Left.setPower(0);
         Back_Right.setPower(-0.5);
         Back_Left.setPower(0);
-        Thrower.setTargetPosition(-4800);
+        sleep(250);
+        Thrower.setTargetPosition(-48000);
         Thrower.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        Thrower.setPower(1.0);
+        Thrower.setPower(0.62);
         runtime.reset();
         while (opModeIsActive() && (runtime.seconds() < 1.25))
         {
             telemetry.addData("Path", "Leg 2: %4.1f S Elapsed", runtime.seconds());
             telemetry.update();
         }
+
+
 
         //Third Step
         Front_Right.setPower(0);
@@ -98,16 +102,19 @@ public class Auto_Shooter extends LinearOpMode
         //FIRE!!!!!
         runtime.reset();
         while (runtime.seconds() < 1) {
-            if (runtime.equals(1)) {
+           /* if (runtime.equals(1)) {
                 Servo_Door.setPosition(1);
-            }
+            }*/
+            Servo_Door.setPosition(1);
         }
+
         runtime.reset();
 
         while (runtime.seconds() < 1) {
-            if (runtime.equals(1)) {
+           /* if (runtime.equals(1)) {
                 Servo_Door.setPosition(0);
-            }
+            }*/
+            Servo_Door.setPosition(0);
         }
     }
 }
