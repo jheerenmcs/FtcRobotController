@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 
 
-@Autonomous(name = "Auto Ball Shooter")
+@Autonomous(name = "Auto Ball Shooter Blue")
 public class Auto_Shooter extends LinearOpMode
 {
     DcMotor Front_Left;
