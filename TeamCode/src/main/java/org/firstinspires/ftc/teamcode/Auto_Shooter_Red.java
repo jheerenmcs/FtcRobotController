@@ -8,9 +8,8 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 
-
-@Autonomous(name = "Auto Ball Shooter Blue")
-public class Auto_Shooter_Blue extends LinearOpMode
+@Autonomous(name = "Auto Ball Shooter Red")
+public class Auto_Shooter_Red extends LinearOpMode
 {
     DcMotor Front_Left;
     DcMotor Front_Right;
@@ -73,10 +72,10 @@ public class Auto_Shooter_Blue extends LinearOpMode
         }
 
         //Second Step
-        Front_Right.setPower(-0.5);
-        Front_Left.setPower(0);
-        Back_Right.setPower(-0.5);
-        Back_Left.setPower(0);
+        Front_Right.setPower(0);
+        Front_Left.setPower(-0.5);
+        Back_Right.setPower(0);
+        Back_Left.setPower(-0.5);
         sleep(250);
         Thrower.setTargetPosition(-48000);
         Thrower.setMode(DcMotor.RunMode.RUN_TO_POSITION);
