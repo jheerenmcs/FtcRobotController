@@ -21,7 +21,7 @@ public class Auto_Shooter_Blue extends LinearOpMode
 
     private ElapsedTime     runtime = new ElapsedTime();
 
-    int saveposition;
+    //int saveposition;
 
     @Override
     public void runOpMode () throws InterruptedException
