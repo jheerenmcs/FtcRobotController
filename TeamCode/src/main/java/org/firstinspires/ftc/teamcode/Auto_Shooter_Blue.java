@@ -38,7 +38,7 @@ public class Auto_Shooter_Blue extends LinearOpMode
         Front_Left.setDirection(DcMotorSimple.Direction.FORWARD);
         Back_Right.setDirection(DcMotorSimple.Direction.REVERSE);
         Back_Left.setDirection(DcMotorSimple.Direction.FORWARD);
-        Thrower.setDirection(DcMotorSimple.Direction.REVERSE);
+        Thrower.setDirection(DcMotorSimple.Direction.FORWARD);
 
         //Telemetry start data
         telemetry.addData("[Front Right Motor Power]",
@@ -105,9 +105,8 @@ public class Auto_Shooter_Blue extends LinearOpMode
         Front_Left.setPower(0);
         Back_Right.setPower(0);
         Back_Left.setPower(0);
-        Thrower.setTargetPosition(-48000);
-        Thrower.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        Thrower.setPower(0.55);
+        sleep(1000);
+        Thrower.setPower(0.77);
         sleep(1000);
 
         //FIRE!!!!!
@@ -127,6 +126,7 @@ public class Auto_Shooter_Blue extends LinearOpMode
             }*/
             Servo_Door.setPosition(0);
         }
+
 
 
     }
