@@ -78,9 +78,10 @@ public class Auto_Shooter_Blue extends LinearOpMode
         Back_Right.setPower(-0.5);
         Back_Left.setPower(0);
         sleep(250);
-        Thrower.setTargetPosition(-48000);
+        /*Thrower.setTargetPosition(-48000);
         Thrower.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        Thrower.setPower(0.6);
+        Thrower.setPower(0.75);
+        */
         runtime.reset();
         while (opModeIsActive() && (runtime.seconds() < 1.25))
         {
@@ -104,6 +105,9 @@ public class Auto_Shooter_Blue extends LinearOpMode
         Front_Left.setPower(0);
         Back_Right.setPower(0);
         Back_Left.setPower(0);
+        Thrower.setTargetPosition(-48000);
+        Thrower.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        Thrower.setPower(0.55);
         sleep(1000);
 
         //FIRE!!!!!
