@@ -67,7 +67,7 @@ public class FTCRobotController extends OpMode
          */
         Lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        Thrower.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
 //  This Hardware Mapping
         telemetry.addData("Status", "Ready to run!");
         telemetry.update();
@@ -83,7 +83,7 @@ public class FTCRobotController extends OpMode
         Back_Left.setDirection(DcMotorSimple.Direction.FORWARD);
 
         Lift.setDirection(DcMotorSimple.Direction.REVERSE);
-        Thrower.setDirection(DcMotorSimple.Direction.REVERSE);
+        Thrower.setDirection(DcMotorSimple.Direction.FORWARD);
 
         Front_Right.setPower(gamepad1.right_stick_y);
         Front_Left.setPower(gamepad1.left_stick_y);
@@ -188,14 +188,10 @@ public class FTCRobotController extends OpMode
         //Thrower Power
         if (gamepad2.x)
         {
-            Thrower.setTargetPosition(-4800);
-            Thrower.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            Thrower.setPower(1.0);
+            Thrower.setPower(0.80);
         }
         else
         {
-            Thrower.setTargetPosition(0);
-            Thrower.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             Thrower.setPower(0);
         }
 
@@ -211,7 +207,7 @@ public class FTCRobotController extends OpMode
             Thrower.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             Thrower.setPower(0);
         }
-         */
+        */
 
 
         /*if (gamepad1.right_trigger > 0)
@@ -239,4 +235,3 @@ public class FTCRobotController extends OpMode
 
     }
 }
-
