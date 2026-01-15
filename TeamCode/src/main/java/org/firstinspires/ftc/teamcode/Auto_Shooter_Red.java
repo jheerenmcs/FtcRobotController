@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 
+
 @Autonomous(name = "Auto Ball Shooter Red")
 public class Auto_Shooter_Red extends LinearOpMode
 {
@@ -20,7 +21,7 @@ public class Auto_Shooter_Red extends LinearOpMode
 
     private ElapsedTime     runtime = new ElapsedTime();
 
-    int saveposition;
+    //int saveposition;
 
     @Override
     public void runOpMode () throws InterruptedException
@@ -37,7 +38,7 @@ public class Auto_Shooter_Red extends LinearOpMode
         Front_Left.setDirection(DcMotorSimple.Direction.FORWARD);
         Back_Right.setDirection(DcMotorSimple.Direction.REVERSE);
         Back_Left.setDirection(DcMotorSimple.Direction.FORWARD);
-        Thrower.setDirection(DcMotorSimple.Direction.REVERSE);
+        Thrower.setDirection(DcMotorSimple.Direction.FORWARD);
 
         //Telemetry start data
         telemetry.addData("[Front Right Motor Power]",
@@ -77,9 +78,10 @@ public class Auto_Shooter_Red extends LinearOpMode
         Back_Right.setPower(0);
         Back_Left.setPower(-0.5);
         sleep(250);
-        Thrower.setTargetPosition(-48000);
+        /*Thrower.setTargetPosition(-48000);
         Thrower.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        Thrower.setPower(1);
+        Thrower.setPower(0.75);
+        */
         runtime.reset();
         while (opModeIsActive() && (runtime.seconds() < 1.25))
         {
@@ -90,13 +92,22 @@ public class Auto_Shooter_Red extends LinearOpMode
 
 
         //Third Step
+        Front_Right.setPower(0.5);
+        Front_Left.setPower(0.5);
+        Back_Right.setPower(0.5);
+        Back_Left.setPower(0.5);
+        sleep(1000);
+
+        telemetry.addData("Path", "Complete");
+        telemetry.update();
+
         Front_Right.setPower(0);
         Front_Left.setPower(0);
         Back_Right.setPower(0);
         Back_Left.setPower(0);
-
-        telemetry.addData("Path", "Complete");
-        telemetry.update();
+        sleep(1000);
+        Thrower.setPower(0.77);
+        sleep(1000);
 
         //FIRE!!!!!
         runtime.reset();
@@ -115,5 +126,23 @@ public class Auto_Shooter_Red extends LinearOpMode
             }*/
             Servo_Door.setPosition(0);
         }
+
+
+        Front_Right.setPower(0);
+        Front_Left.setPower(0);
+        Back_Right.setPower(0);
+        Back_Left.setPower(0);
+        sleep(1000);
+
+        Front_Right.setPower(-0.5);
+        Front_Left.setPower(-0.5);
+        Back_Right.setPower(-0.5);
+        Back_Left.setPower(-0.5);
+        sleep(250);
+
+
+
+
+
     }
 }
