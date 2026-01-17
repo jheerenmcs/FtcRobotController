@@ -106,9 +106,9 @@ public class FTCRobotController extends OpMode
             Back_Right.setPower(-1);
             Back_Left.setPower(-1);
         }
+        //This is fast strafe
+
         //This is slow strafe
-
-
         if (gamepad1.left_trigger > 0)
         {
             Front_Right.setPower(0.65);
@@ -225,7 +225,7 @@ public class FTCRobotController extends OpMode
             Back_Left.setPower(-0.5);
         }
 */
-
+        //Telemetry Data
         telemetry.addData("[Front Left Odometer]",
                 Front_Right.getCurrentPosition());
         telemetry.addData("[Front Right Odometer]",

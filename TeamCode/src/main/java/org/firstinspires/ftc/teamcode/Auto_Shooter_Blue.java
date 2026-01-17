@@ -101,6 +101,7 @@ public class Auto_Shooter_Blue extends LinearOpMode
         telemetry.addData("Path", "Complete");
         telemetry.update();
 
+        //stop
         Front_Right.setPower(0);
         Front_Left.setPower(0);
         Back_Right.setPower(0);
@@ -134,6 +135,7 @@ public class Auto_Shooter_Blue extends LinearOpMode
         Back_Left.setPower(0);
         sleep(1000);
 
+        //Back up
         Front_Right.setPower(-0.5);
         Front_Left.setPower(-0.5);
         Back_Right.setPower(-0.5);
