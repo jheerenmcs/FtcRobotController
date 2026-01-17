@@ -63,13 +63,13 @@ public class Ryan_Auto_5 extends LinearOpMode
         Front_Left.setPower(-0.5);
         Back_Right.setPower(-0.5);
         Back_Left.setPower(-0.5);
-        runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < 2.5))
-        {
-            telemetry.addData("Path", "Leg 1: %4.1f S Elapsed", runtime.seconds());
-            telemetry.update();
-        }
+        sleep(1500);
 
-        sleep(1000);
+        Front_Right.setPower(0);
+        Front_Left.setPower(0);
+        Back_Right.setPower(0);
+        Back_Left.setPower(0);
+
+        stop();
     }
 }
