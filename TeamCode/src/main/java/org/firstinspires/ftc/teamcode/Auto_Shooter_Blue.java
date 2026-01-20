@@ -136,10 +136,10 @@ public class Auto_Shooter_Blue extends LinearOpMode
         sleep(1000);
 
         //Back up
-        Front_Right.setPower(-0.5);
-        Front_Left.setPower(-0.5);
-        Back_Right.setPower(-0.5);
-        Back_Left.setPower(-0.5);
+        Front_Right.setPower(0.5);
+        Front_Left.setPower(0.5);
+        Back_Right.setPower(0.5);
+        Back_Left.setPower(0.5);
         sleep(250);
 
 
