@@ -197,14 +197,10 @@ public class FTCRobotController extends OpMode
 
         /*if (gamepad2.y)
         {
-            Thrower.setTargetPosition(-4800);
-            Thrower.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            Thrower.setPower(-1.0);
+            Thrower.setPower(-0.40);
         }
         else
         {
-            Thrower.setTargetPosition(0);
-            Thrower.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             Thrower.setPower(0);
         }
         */
