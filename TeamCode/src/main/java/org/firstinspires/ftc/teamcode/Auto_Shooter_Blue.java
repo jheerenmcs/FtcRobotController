@@ -9,8 +9,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 
 
-@Autonomous(name = "Auto Ball Shooter")
-public class Auto_Shooter extends LinearOpMode
+@Autonomous(name = "Auto Ball Shooter Blue")
+public class Auto_Shooter_Blue extends LinearOpMode
 {
     DcMotor Front_Left;
     DcMotor Front_Right;
@@ -21,7 +21,7 @@ public class Auto_Shooter extends LinearOpMode
 
     private ElapsedTime     runtime = new ElapsedTime();
 
-    int saveposition;
+    //int saveposition;
 
     @Override
     public void runOpMode () throws InterruptedException
@@ -31,14 +31,14 @@ public class Auto_Shooter extends LinearOpMode
         Back_Left = hardwareMap.dcMotor.get("Back Left");
         Back_Right = hardwareMap.dcMotor.get("Back Right");
         Thrower = hardwareMap.dcMotor.get("Thrower");
-        // Servo_Door = hardwareMap.servo.get("Servo_Door");
+        Servo_Door = hardwareMap.servo.get("Servo_Door");
 
         //Set motor directions
         Front_Right.setDirection(DcMotorSimple.Direction.REVERSE);
         Front_Left.setDirection(DcMotorSimple.Direction.FORWARD);
         Back_Right.setDirection(DcMotorSimple.Direction.REVERSE);
         Back_Left.setDirection(DcMotorSimple.Direction.FORWARD);
-        Thrower.setDirection(DcMotorSimple.Direction.REVERSE);
+        Thrower.setDirection(DcMotorSimple.Direction.FORWARD);
 
         //Telemetry start data
         telemetry.addData("[Front Right Motor Power]",
@@ -64,6 +64,7 @@ public class Auto_Shooter extends LinearOpMode
         Front_Left.setPower(-0.5);
         Back_Right.setPower(-0.5);
         Back_Left.setPower(-0.5);
+        sleep(100);
         runtime.reset();
         while (opModeIsActive() && (runtime.seconds() < 2.5 ))
         {
@@ -76,9 +77,11 @@ public class Auto_Shooter extends LinearOpMode
         Front_Left.setPower(0);
         Back_Right.setPower(-0.5);
         Back_Left.setPower(0);
-        Thrower.setTargetPosition(-4800);
+        sleep(250);
+        /*Thrower.setTargetPosition(-48000);
         Thrower.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        Thrower.setPower(1.0);
+        Thrower.setPower(0.75);
+        */
         runtime.reset();
         while (opModeIsActive() && (runtime.seconds() < 1.25))
         {
@@ -86,27 +89,62 @@ public class Auto_Shooter extends LinearOpMode
             telemetry.update();
         }
 
+
+
         //Third Step
-        Front_Right.setPower(0);
-        Front_Left.setPower(0);
-        Back_Right.setPower(0);
-        Back_Left.setPower(0);
+        Front_Right.setPower(0.5);
+        Front_Left.setPower(0.5);
+        Back_Right.setPower(0.5);
+        Back_Left.setPower(0.5);
+        sleep(750);
 
         telemetry.addData("Path", "Complete");
         telemetry.update();
 
+        //stop
+        Front_Right.setPower(0);
+        Front_Left.setPower(0);
+        Back_Right.setPower(0);
+        Back_Left.setPower(0);
+        sleep(1000);
+        Thrower.setPower(0.77);
+        sleep(1000);
+
         //FIRE!!!!!
         runtime.reset();
-        if (runtime.equals(1))
-        {
+        while (runtime.seconds() < 1) {
+           /* if (runtime.equals(1)) {
+                Servo_Door.setPosition(1);
+            }*/
             Servo_Door.setPosition(1);
         }
-        else if (runtime.equals(2))
-        {
-            Servo_Door.setPosition(0.1);
+
+        runtime.reset();
+
+        while (runtime.seconds() < 1) {
+           /* if (runtime.equals(1)) {
+                Servo_Door.setPosition(0);
+            }*/
+            Servo_Door.setPosition(0);
         }
 
+
+        Front_Right.setPower(0);
+        Front_Left.setPower(0);
+        Back_Right.setPower(0);
+        Back_Left.setPower(0);
         sleep(1000);
-        }
+
+        //Back up
+        Front_Right.setPower(0.5);
+        Front_Left.setPower(0.5);
+        Back_Right.setPower(0.5);
+        Back_Left.setPower(0.5);
+        sleep(250);
+
+
+
+
+
     }
-    
+}

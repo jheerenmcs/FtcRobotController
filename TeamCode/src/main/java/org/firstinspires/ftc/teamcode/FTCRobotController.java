@@ -59,7 +59,7 @@ public class FTCRobotController extends OpMode
         Back_Right = hardwareMap.dcMotor.get("Back Right");
         Thrower = hardwareMap.dcMotor.get("Thrower");
         Lift = hardwareMap.dcMotor.get("Lift");
-        Servo_Door = hardwareMap.servo.get("Servo Servo_Door");
+        Servo_Door = hardwareMap.servo.get("Servo_Door");
         //Servo_Holding = hardwareMap.servo.get("Servo_Holding");
 
         /*
@@ -67,7 +67,7 @@ public class FTCRobotController extends OpMode
          */
         Lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        Thrower.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
 //  This Hardware Mapping
         telemetry.addData("Status", "Ready to run!");
         telemetry.update();
@@ -83,7 +83,7 @@ public class FTCRobotController extends OpMode
         Back_Left.setDirection(DcMotorSimple.Direction.FORWARD);
 
         Lift.setDirection(DcMotorSimple.Direction.REVERSE);
-        Thrower.setDirection(DcMotorSimple.Direction.REVERSE);
+        Thrower.setDirection(DcMotorSimple.Direction.FORWARD);
 
         Front_Right.setPower(gamepad1.right_stick_y);
         Front_Left.setPower(gamepad1.left_stick_y);
@@ -106,9 +106,9 @@ public class FTCRobotController extends OpMode
             Back_Right.setPower(-1);
             Back_Left.setPower(-1);
         }
+        //This is fast strafe
+
         //This is slow strafe
-
-
         if (gamepad1.left_trigger > 0)
         {
             Front_Right.setPower(0.65);
@@ -161,7 +161,7 @@ public class FTCRobotController extends OpMode
         }
 
          */
-//Firing Servo Controls
+        //Firing Servo Controls
         if (gamepad2.right_trigger > 0)
         {
             Servo_Door.setPosition(1);
@@ -188,16 +188,22 @@ public class FTCRobotController extends OpMode
         //Thrower Power
         if (gamepad2.x)
         {
-            Thrower.setTargetPosition(-4800);
-            Thrower.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            Thrower.setPower(1.0);
+            Thrower.setPower(0.80);
         }
         else
         {
-            Thrower.setTargetPosition(0);
-            Thrower.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             Thrower.setPower(0);
         }
+
+        /*if (gamepad2.y)
+        {
+            Thrower.setPower(-0.40);
+        }
+        else
+        {
+            Thrower.setPower(0);
+        }
+        */
 
 
         /*if (gamepad1.right_trigger > 0)
@@ -215,7 +221,7 @@ public class FTCRobotController extends OpMode
             Back_Left.setPower(-0.5);
         }
 */
-
+        //Telemetry Data
         telemetry.addData("[Front Left Odometer]",
                 Front_Right.getCurrentPosition());
         telemetry.addData("[Front Right Odometer]",
@@ -225,4 +231,3 @@ public class FTCRobotController extends OpMode
 
     }
 }
-
