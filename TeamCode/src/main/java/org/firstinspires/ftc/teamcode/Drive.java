@@ -21,7 +21,6 @@ public class Drive extends OpMode
     DcMotor Hang;
     Servo Claw;
 
-
     //   Lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
     int time;
@@ -125,6 +124,7 @@ public class Drive extends OpMode
            Wrist.setPower(-0.75);
         }*/
 
+           //Driver Controls for Strafing.
         if (gamepad1.right_trigger>0)
         {
             Front_Right.setPower(0.5);
