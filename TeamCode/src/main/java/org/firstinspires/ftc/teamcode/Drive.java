@@ -47,6 +47,7 @@ public class Drive extends OpMode
     @Override
     public void loop()
     {
+        //Driver Wheel Rotation Directions
         Front_Right.setDirection(DcMotorSimple.Direction.REVERSE);
         Front_Left.setDirection(DcMotorSimple.Direction.FORWARD);
         Back_Right.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -56,8 +57,8 @@ public class Drive extends OpMode
         Wrist.setDirection(DcMotorSimple.Direction.REVERSE);
         Hang.setDirection(DcMotorSimple.Direction.FORWARD);
         //Lift.setPower()
-
-
+        
+        //Driver Controls for Forward and Backward Movement
         Front_Right.setPower(gamepad1.right_stick_y);
         Front_Left.setPower(gamepad1.left_stick_y);
         Back_Right.setPower(gamepad1.right_stick_y);
