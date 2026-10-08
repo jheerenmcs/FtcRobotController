@@ -9,6 +9,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.ServoImplEx;
 import com.qualcomm.robotcore.hardware.configuration.annotations.ServoType;
+import com.qualcomm.robotcore.hardware.OdometryPod;
 /*
 All of the imports are what you are calling to be in your code.
 Think of the package like a library, and all the imports are the books.
@@ -38,6 +39,9 @@ public class FTCRobotController extends OpMode
     //Ditto, but for our thrower and servo door.
     //Servo Servo_Holding;
 
+    OdometryPod X_Axis;
+    OdometryPod Y_Axis;
+
     int time;
     //This initializes an integer (number) named time.
 
@@ -61,6 +65,8 @@ public class FTCRobotController extends OpMode
         Lift = hardwareMap.dcMotor.get("Lift");
         Servo_Door = hardwareMap.servo.get("Servo_Door");
         //Servo_Holding = hardwareMap.servo.get("Servo_Holding");
+        X_Axis = hardwareMap.odometryPod.get("X_Axis");
+        Y_Axis = hardwareMap.odometryPod.get("Y_Axis");
 
         /*
         This Hardware Mapping
@@ -228,6 +234,10 @@ public class FTCRobotController extends OpMode
                 Back_Left.getCurrentPosition());
         telemetry.addData("[Back Odometer]",
                 Front_Left.getCurrentPosition());
-
+        telemetry.addData("[X-Axis Odometer Position]",
+                X_Axis.getCurrentPosition());
+        telemetry.addData("[Y-Axis Odometer Position]",
+                Y_Axis.getCurrentPosition());
+        telemetry.update();        
     }
 }

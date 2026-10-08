@@ -2,13 +2,12 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.util.ElapsedTime;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.OdometryPod;
+
 
 @Disabled
 @TeleOp (name = "Drive")
@@ -22,8 +21,7 @@ public class Drive extends OpMode
     DcMotor Wrist;
     DcMotor Hang;
     Servo Claw;
-    OdometryPod X_Axis;
-    OdometryPod Y_Axis;
+    
     //   Lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
     int time;
@@ -38,8 +36,6 @@ public class Drive extends OpMode
         Wrist = hardwareMap.dcMotor.get("Wrist");
         Hang = hardwareMap.dcMotor.get("Hang");
         Claw = hardwareMap.servo.get("Claw");
-        X_Axis = hardwareMap.odometryPod.get("X_Axis");
-        Y_Axis = hardwareMap.odometryPod.get("Y_Axis");
         Lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
 
@@ -180,11 +176,7 @@ public class Drive extends OpMode
         telemetry.addData("[Claw Position]",
                 Claw.getPosition());
         telemetry.addData("[Lift Encoder Position]",
-                Lift.getCurrentPosition());
-        telemetry.addData("[X-Axis Odometer Position]",
-                X_Axis.getCurrentPosition());
-        telemetry.addData("[Y-Axis Odometer Position]",
-                Y_Axis.getCurrentPosition());        
+                Lift.getCurrentPosition());       
         telemetry.update();
     }
 
