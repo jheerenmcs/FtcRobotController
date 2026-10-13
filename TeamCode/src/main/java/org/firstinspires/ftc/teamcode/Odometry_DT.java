@@ -14,11 +14,11 @@ import com.qualcomm.robotcore.hardware.OdometryPod;
 All of the imports are what you are calling to be in your code.
 Think of the package like a library, and all the imports are the books.
  */
-@TeleOp (name = "Drive")
+@TeleOp (name = "Odometry_DT")
 /*This is an operation mode. we uh don't really know how that works yet
 We are naming this mode "Drive".
  */
-public class FTCRobotController extends OpMode
+public class Odometry_DT extends OpMode
     /*
     Inside the public class is where all your main code will go
      */
