@@ -16,32 +16,33 @@ unless you are using a specific custom library.
 */
 
 @TeleOp (name = "Odometry_DT")
-public class Odometry_DT extends OpMode 
-{
+public class Odometry_DT extends OpMode {
+    
     // Drive Motors
     DcMotor Front_Left;
     DcMotor Front_Right;
     DcMotor Back_Left;
     DcMotor Back_Right;
 
-    // Mechanism Motors/Servos
+    // Motors/Servos
     DcMotor Thrower;
     DcMotor Lift;
     Servo Servo_Door;
 
     /* 
-     * NOTE: Changed from "OdometryPod" to "DcMotor". 
-     * In the standard FTC SDK, odometry wheels are plugged into encoder ports 
-     * on the Control/Expansion hubs and read as standard DcMotor objects.
+     Changed from "OdometryPod" to "DcMotor". 
+     In the standard FTC SDK, odometry wheels are plugged into encoder ports 
+     on the Control/Expansion hubs and read as standard DcMotor objects.
      */
+    
     DcMotor X_Axis;
     DcMotor Y_Axis;
 
     int time; // Initializes an integer named time
 
     @Override
-    public void init() 
-    {
+    public void init() {
+        
         // Hardware Mapping
         Front_Left = hardwareMap.dcMotor.get("Front Left");
         Front_Right = hardwareMap.dcMotor.get("Front Right");
@@ -51,14 +52,14 @@ public class Odometry_DT extends OpMode
         Lift = hardwareMap.dcMotor.get("Lift");
         Servo_Door = hardwareMap.servo.get("Servo_Door");
         
-        // Maps encoder pods as standard motor encoder ports
+        // Maps encoder pods
         X_Axis = hardwareMap.dcMotor.get("X_Axis");
         Y_Axis = hardwareMap.dcMotor.get("Y_Axis");
 
         /* 
-         * NOTE: Critical performance optimization.
-         * Motor directions should ONLY be configured once inside init().
-         * Putting them in loop() spams commands to the hub and causes massive lag.
+         Critical performance optimization.
+         Motor directions should ONLY be configured once inside init().
+         Putting them in loop() spams commands to the hub and causes massive lag.
          */
         Front_Right.setDirection(DcMotorSimple.Direction.REVERSE);
         Front_Left.setDirection(DcMotorSimple.Direction.FORWARD);
@@ -78,11 +79,11 @@ public class Odometry_DT extends OpMode
     public void loop() 
     {
         /* 
-         * NOTE: Replaced broken driver control hierarchy.
-         * Previously, joysticks and bumpers fought for control every millisecond,
-         * causing the motors to violently twitch. Now, if/else logic ensures
-         * that button inputs override joystick inputs cleanly.
+         Joysticks and bumpers fought for control every millisecond,
+         causing the motors to violently twitch. This should stop the 
+         Violent twitching - they were fighting for control
          */
+        
         if (gamepad1.right_bumper) 
         {
             // Fast Strafe Right
