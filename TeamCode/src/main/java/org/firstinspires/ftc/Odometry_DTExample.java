@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -8,101 +8,148 @@ import com.qualcomm.robotcore.hardware.Servo;
 /* 
 import com.qualcomm.robotcore.hardware.ServoImplEx;
 import com.qualcomm.robotcore.hardware.configuration.annotations.ServoType;
-import com.qualcomm.robotcore.hardware.OdometryPod; - Doesn't exist
+import com.qualcomm.robotcore.hardware.OdometryPod; <- Doesn't exist
 OdometryPod is not a standard built-in class name in the FTC SDK for 
 standard motor encoders; odometry pods are typically read using 
 regular DcMotor or encoder objects (like Encoder or OverflowEncoder) 
 unless you are using a specific custom library.
 */
 
-@TeleOp(name = "Odometry_DT")
-public class Odometry_DT extends LinearOpMode {
-    /*
-    Extending OpMode vs. LinearOpMode: OpMode requires you to handle 
-    everything in an event-driven loop() cycle that constantly repeats. 
-    Most FTC teams use LinearOpMode, which lets you use a while 
-    (opModeIsActive()) loop and is much easier to read and debug.
-    */
+@TeleOp (name = "Odometry_DT")
+public class Odometry_DT extends OpMode 
+{
+    // Drive Motors
+    DcMotor Front_Left;
+    DcMotor Front_Right;
+    DcMotor Back_Left;
+    DcMotor Back_Right;
 
-    private DcMotor frontLeft, frontRight, backLeft, backRight;
-    private DcMotor thrower, lift;
-    private Servo servoDoor;
+    // Mechanism Motors/Servos
+    DcMotor Thrower;
+    DcMotor Lift;
+    Servo Servo_Door;
+
+    /* 
+     * NOTE: Changed from "OdometryPod" to "DcMotor". 
+     * In the standard FTC SDK, odometry wheels are plugged into encoder ports 
+     * on the Control/Expansion hubs and read as standard DcMotor objects.
+     */
+    DcMotor X_Axis;
+    DcMotor Y_Axis;
+
+    int time; // Initializes an integer named time
 
     @Override
-    public void runOpMode() {
-        // Initialize Hardware
-        frontLeft  = hardwareMap.get(DcMotor.class, "Front Left");
-        frontRight = hardwareMap.get(DcMotor.class, "Front Right");
-        backLeft   = hardwareMap.get(DcMotor.class, "Back Left");
-        backRight  = hardwareMap.get(DcMotor.class, "Back Right");
-        thrower    = hardwareMap.get(DcMotor.class, "Thrower");
-        lift       = hardwareMap.get(DcMotor.class, "Lift");
-        servoDoor  = hardwareMap.get(Servo.class, "Servo_Door");
+    public void init() 
+    {
+        // Hardware Mapping
+        Front_Left = hardwareMap.dcMotor.get("Front Left");
+        Front_Right = hardwareMap.dcMotor.get("Front Right");
+        Back_Left = hardwareMap.dcMotor.get("Back Left");
+        Back_Right = hardwareMap.dcMotor.get("Back Right");
+        Thrower = hardwareMap.dcMotor.get("Thrower");
+        Lift = hardwareMap.dcMotor.get("Lift");
+        Servo_Door = hardwareMap.servo.get("Servo_Door");
+        
+        // Maps encoder pods as standard motor encoder ports
+        X_Axis = hardwareMap.dcMotor.get("X_Axis");
+        Y_Axis = hardwareMap.dcMotor.get("Y_Axis");
 
-        // Set Motor Directions (Do this once during init)
-        frontLeft.setDirection(DcMotorSimple.Direction.FORWARD);
-        frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
-        backLeft.setDirection(DcMotorSimple.Direction.FORWARD);
-        backRight.setDirection(DcMotorSimple.Direction.REVERSE);
-        lift.setDirection(DcMotorSimple.Direction.REVERSE);
-        thrower.setDirection(DcMotorSimple.Direction.FORWARD);
+        /* 
+         * NOTE: Critical performance optimization.
+         * Motor directions should ONLY be configured once inside init().
+         * Putting them in loop() spams commands to the hub and causes massive lag.
+         */
+        Front_Right.setDirection(DcMotorSimple.Direction.REVERSE);
+        Front_Left.setDirection(DcMotorSimple.Direction.FORWARD);
+        Back_Right.setDirection(DcMotorSimple.Direction.REVERSE);
+        Back_Left.setDirection(DcMotorSimple.Direction.FORWARD);
+        Lift.setDirection(DcMotorSimple.Direction.REVERSE);
+        Thrower.setDirection(DcMotorSimple.Direction.FORWARD);
 
-        // Reset Lift Encoder
-        lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        lift.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        // Reset the encoder on initialization
+        Lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         telemetry.addData("Status", "Ready to run!");
         telemetry.update();
+    }
 
-        waitForStart();
-
-        while (opModeIsActive()) {
-            // Basic Tank / Mecanum Drive Math
-            double forward = -gamepad1.left_stick_y; // Inverted Y-axis
-            double turn    = gamepad1.right_stick_x;
-            double strafe  = gamepad1.left_x;
-
-            // Simple power distribution
-            double flPower = forward + turn + strafe;
-            double blPower = forward + turn - strafe;
-            double frPower = forward - turn - strafe;
-            double brPower = forward - turn + strafe;
-
-            frontLeft.setPower(flPower);
-            backLeft.setPower(blPower);
-            frontRight.setPower(frPower);
-            backRight.setPower(brPower);
-
-            // Bumper Strafe Overrides
-            if (gamepad1.right_bumper) {
-                frontLeft.setPower(-1);
-                backLeft.setPower(1);
-                frontRight.setPower(-1);
-                backRight.setPower(1);
-            } else if (gamepad1.left_bumper) {
-                frontLeft.setPower(1);
-                backLeft.setPower(-1);
-                frontRight.setPower(1);
-                backRight.setPower(-1);
-            }
-
-            // Thrower Control
-            if (gamepad2.x) {
-                thrower.setPower(0.80);
-            } else {
-                thrower.setPower(0);
-            }
-
-            // Servo Door Control
-            if (gamepad2.right_trigger > 0) {
-                servoDoor.setPosition(1);
-            } else if (gamepad2.left_trigger > 0) {
-                servoDoor.setPosition(0);
-            }
-
-            // Telemetry
-            telemetry.addData("Lift Position", lift.getCurrentPosition());
-            telemetry.update();
+    @Override
+    public void loop() 
+    {
+        /* 
+         * NOTE: Replaced broken driver control hierarchy.
+         * Previously, joysticks and bumpers fought for control every millisecond,
+         * causing the motors to violently twitch. Now, if/else logic ensures
+         * that button inputs override joystick inputs cleanly.
+         */
+        if (gamepad1.right_bumper) 
+        {
+            // Fast Strafe Right
+            Front_Left.setPower(1.0);
+            Front_Right.setPower(-1.0);
+            Back_Left.setPower(-1.0);
+            Back_Right.setPower(1.0);
+        } 
+        else if (gamepad1.left_bumper) 
+        {
+            // Fast Strafe Left
+            Front_Left.setPower(-1.0);
+            Front_Right.setPower(1.0);
+            Back_Left.setPower(1.0);
+            Back_Right.setPower(-1.0);
+        } 
+        else if (gamepad1.right_trigger > 0) 
+        {
+            // Slow Strafe Right
+            Front_Left.setPower(0.65);
+            Front_Right.setPower(-0.65);
+            Back_Left.setPower(-0.65);
+            Back_Right.setPower(0.65);
+        } 
+        else if (gamepad1.left_trigger > 0) 
+        {
+            // Slow Strafe Left
+            Front_Left.setPower(-0.65);
+            Front_Right.setPower(0.65);
+            Back_Left.setPower(0.65);
+            Back_Right.setPower(-0.65);
+        } 
+        else 
+        {
+            // Default Tank Drive (Active when no strafe buttons are pressed)
+            Front_Left.setPower(gamepad1.left_stick_y);
+            Back_Left.setPower(gamepad1.left_stick_y);
+            Front_Right.setPower(gamepad1.right_stick_y);
+            Back_Right.setPower(gamepad1.right_stick_y);
         }
+
+        // Firing Servo Controls (Gamepad 2)
+        if (gamepad2.right_trigger > 0) 
+        {
+            Servo_Door.setPosition(1);
+        } 
+        else if (gamepad2.left_trigger > 0) 
+        {
+            Servo_Door.setPosition(0);
+        }
+
+        // Thrower Power (Gamepad 2)
+        if (gamepad2.x) 
+        {
+            Thrower.setPower(0.80);
+        } 
+        else 
+        {
+            Thrower.setPower(0);
+        }
+
+        // Telemetry Data (Sends live info to Driver Station)
+        telemetry.addData("[Front Left Odometer]", Front_Right.getCurrentPosition());
+        telemetry.addData("[Front Right Odometer]", Back_Left.getCurrentPosition());
+        telemetry.addData("[Back Odometer]", Front_Left.getCurrentPosition());
+        telemetry.addData("[X-Axis Odometer Position]", X_Axis.getCurrentPosition());
+        telemetry.addData("[Y-Axis Odometer Position]", Y_Axis.getCurrentPosition());
+        telemetry.update();        
     }
 }
