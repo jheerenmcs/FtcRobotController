@@ -9,7 +9,6 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.ServoImplEx;
 import com.qualcomm.robotcore.hardware.configuration.annotations.ServoType;
-import com.qualcomm.robotcore.hardware.OdometryPod;
 /*
 All of the imports are what you are calling to be in your code.
 Think of the package like a library, and all the imports are the books.
@@ -39,8 +38,8 @@ public class Odometry_DT extends OpMode
     //Ditto, but for our thrower and servo door.
     //Servo Servo_Holding;
 
-    OdometryPod X_Axis;
-    OdometryPod Y_Axis;
+    DcMotor X_Axis;
+    DcMotor Y_Axis;
 
     int time;
     //This initializes an integer (number) named time.
@@ -65,8 +64,8 @@ public class Odometry_DT extends OpMode
         Lift = hardwareMap.dcMotor.get("Lift");
         Servo_Door = hardwareMap.servo.get("Servo_Door");
         //Servo_Holding = hardwareMap.servo.get("Servo_Holding");
-        X_Axis = hardwareMap.odometryPod.get("X_Axis");
-        Y_Axis = hardwareMap.odometryPod.get("Y_Axis");
+        X_Axis = hardwareMap.dcMotor.get("X_Axis");
+        Y_Axis = hardwareMap.dcMotor.get("Y_Axis");
 
         /*
         This Hardware Mapping
