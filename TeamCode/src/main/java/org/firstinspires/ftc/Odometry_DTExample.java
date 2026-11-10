@@ -15,8 +15,8 @@ regular DcMotor or encoder objects (like Encoder or OverflowEncoder)
 unless you are using a specific custom library.
 */
 
-@TeleOp (name = "Odometry_DT")
-public class Odometry_DT extends OpMode {
+@TeleOp (name = "Odometry_DTExample")
+public class Odometry_DTExample extends OpMode {
     
     // Drive Motors
     DcMotor Front_Left;

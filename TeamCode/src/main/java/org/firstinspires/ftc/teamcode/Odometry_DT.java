@@ -35,6 +35,7 @@ public class Odometry_DT extends OpMode
     DcMotor Thrower;
     DcMotor Lift;
     Servo Servo_Door;
+    DcMotor Snail;
     //Ditto, but for our thrower and servo door.
     //Servo Servo_Holding;
 
@@ -66,6 +67,7 @@ public class Odometry_DT extends OpMode
         //Servo_Holding = hardwareMap.servo.get("Servo_Holding");
         X_Axis = hardwareMap.dcMotor.get("X_Axis");
         Y_Axis = hardwareMap.dcMotor.get("Y_Axis");
+        Snail = hardwareMap.dcMotor.get("Snail");
 
         /*
         This Hardware Mapping
@@ -190,7 +192,7 @@ public class Odometry_DT extends OpMode
          */
 
 
-        //Thrower Power
+        /* Thrower Power
         if (gamepad2.x)
         {
             Thrower.setPower(0.80);
@@ -226,6 +228,17 @@ public class Odometry_DT extends OpMode
             Back_Left.setPower(-0.5);
         }
 */
+        //Catapult Controls.
+        if (gamepad2.x)
+        { 
+            Snail.rotate(1);
+        }
+
+
+
+
+
+
         //Telemetry Data
         telemetry.addData("[Front Left Odometer]",
                 Front_Right.getCurrentPosition());
