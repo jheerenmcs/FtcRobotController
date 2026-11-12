@@ -231,7 +231,13 @@ public class Odometry_DT extends OpMode
         //Catapult Controls.
         if (gamepad2.x)
         { 
-            Snail.rotate(1);
+            Snail.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            Snail.setTargetPosition(
+                Snail.getCurrentPosition() + 360);
+                Snail.setPower(1);
+        } else
+        {
+            Snail.setPower(0);
         }
 
 
