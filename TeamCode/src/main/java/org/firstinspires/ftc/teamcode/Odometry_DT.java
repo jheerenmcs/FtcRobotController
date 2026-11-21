@@ -32,13 +32,14 @@ public class Odometry_DT extends OpMode
     We are also giving them all names.
      */
 
-    DcMotor Thrower;
-    DcMotor Lift;
-    Servo Servo_Door;
+    Servo   Drop_System;
     DcMotor Snail;
     //Ditto, but for our thrower and servo door.
     //Servo Servo_Holding;
+    DcMotor Intake;
 
+
+    //Odometry
     DcMotor X_Axis;
     DcMotor Y_Axis;
 
@@ -61,18 +62,19 @@ public class Odometry_DT extends OpMode
         Front_Right = hardwareMap.dcMotor.get("Front Right");
         Back_Left = hardwareMap.dcMotor.get("Back Left");
         Back_Right = hardwareMap.dcMotor.get("Back Right");
-        Thrower = hardwareMap.dcMotor.get("Thrower");
-        Lift = hardwareMap.dcMotor.get("Lift");
-        Servo_Door = hardwareMap.servo.get("Servo_Door");
+
         //Servo_Holding = hardwareMap.servo.get("Servo_Holding");
         X_Axis = hardwareMap.dcMotor.get("X_Axis");
         Y_Axis = hardwareMap.dcMotor.get("Y_Axis");
         Snail = hardwareMap.dcMotor.get("Snail");
+        Intake = hardwareMap.dcMotor.get("Intake");
+
+        Drop_System = hardwareMap.servo.get("Drop_System");
 
         /*
         This Hardware Mapping
          */
-        Lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        Intake.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
 
 //  This Hardware Mapping
@@ -88,9 +90,6 @@ public class Odometry_DT extends OpMode
         Front_Left.setDirection(DcMotorSimple.Direction.FORWARD);
         Back_Right.setDirection(DcMotorSimple.Direction.REVERSE);
         Back_Left.setDirection(DcMotorSimple.Direction.FORWARD);
-
-        Lift.setDirection(DcMotorSimple.Direction.REVERSE);
-        Thrower.setDirection(DcMotorSimple.Direction.FORWARD);
 
         Front_Right.setPower(gamepad1.right_stick_y);
         Front_Left.setPower(gamepad1.left_stick_y);
@@ -132,102 +131,6 @@ public class Odometry_DT extends OpMode
         }
         //This is fast strafe
 
-        //Servo_Door = hardwareMap.get(Servo_Door);
-
-        //Lift Position High
-        /*if (gamepad2.left_stick_y < 0)
-        {
-            Lift.setTargetPosition(-4800);
-            Lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            Lift.setPower(1);
-        }
-        if (gamepad2.left_stick_y > 0)
-        {
-            Lift.setTargetPosition(0);
-            Lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            Lift.setPower(1);
-            // Lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        }
-        if (gamepad2.dpad_down)
-        {
-            Lift.setTargetPosition(-2400);
-            Lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            Lift.setPower(1);
-        }
-        if (gamepad2.dpad_up)
-        {
-            Lift.setTargetPosition(-200);
-            Lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            Lift.setPower(1);
-        }
-        if (gamepad2.x)
-        {
-            Lift.setTargetPosition(-2100);
-            Lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            Lift.setPower(1);
-        }
-
-         */
-        //Firing Servo Controls
-        if (gamepad2.right_trigger > 0)
-        {
-            Servo_Door.setPosition(1);
-        }
-
-        else if (gamepad2.left_trigger > 0)
-        {
-            Servo_Door.setPosition(0);
-        }
-
-        /*Holding Servo Controls
-        if (gamepad2.right_bumper)
-        {
-            Servo_Holding.setPosition(0);
-        }
-        else if (gamepad2.left_bumper)
-        {
-            Servo_Holding.setPosition(1);
-        }
-
-         */
-
-
-        /* Thrower Power
-        if (gamepad2.x)
-        {
-            Thrower.setPower(0.80);
-        }
-        else
-        {
-            Thrower.setPower(0);
-        }
-
-        /*if (gamepad2.y)
-        {
-            Thrower.setPower(-0.40);
-        }
-        else
-        {
-            Thrower.setPower(0);
-        }
-        */
-
-
-        /*if (gamepad1.right_trigger > 0)
-        {
-            Front_Right.setPower(0.5);
-            Front_Left.setPower(-0.5);
-            Back_Right.setPower(-0.5);
-            Back_Left.setPower(0.5);
-        }
-        else if (gamepad1.left_trigger > 0)
-        {
-            Front_Right.setPower(-0.5);
-            Front_Left.setPower(0.5);
-            Back_Right.setPower(0.5);
-            Back_Left.setPower(-0.5);
-        }
-*/
         //Catapult Controls.
         if (gamepad2.x)
         { 
@@ -240,9 +143,25 @@ public class Odometry_DT extends OpMode
             Snail.setPower(0);
         }
 
+        //Intake System
+        if (gamepad2.y)
+        {
+            Intake.setPower(1);
+        }
+        else if (gamepad2.a)
+        {
+            Intake.setPower(-1);
+        }
 
-
-
+        //Drop System
+        if (gamepad2.right_trigger)
+        {
+            Drop_System.setPosition(22);
+        }
+        if (gamepad2.left_trigger)
+        {
+            Drop_System.setPosition(0);
+        }
 
 
         //Telemetry Data
