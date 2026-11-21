@@ -15,8 +15,7 @@ public class Ryan_Auto extends LinearOpMode
     DcMotor Front_Right;
     DcMotor Back_Left;
     DcMotor Back_Right;
-    DcMotor Thrower;
-    //Servo Servo_Door;
+
 
     int saveposition;
 
@@ -27,7 +26,6 @@ public class Ryan_Auto extends LinearOpMode
         Front_Right = hardwareMap.dcMotor.get("Front Right");
         Back_Left = hardwareMap.dcMotor.get("Back Left");
         Back_Right = hardwareMap.dcMotor.get("Back Right");
-        Thrower = hardwareMap.dcMotor.get("Thrower");
         // Servo_Door = hardwareMap.servo.get("Servo_Door");
 
         //Set motor directions
@@ -35,7 +33,6 @@ public class Ryan_Auto extends LinearOpMode
         Front_Left.setDirection(DcMotorSimple.Direction.FORWARD);
         Back_Right.setDirection(DcMotorSimple.Direction.REVERSE);
         Back_Left.setDirection(DcMotorSimple.Direction.FORWARD);
-        Thrower.setDirection(DcMotorSimple.Direction.FORWARD);
 
         //Telemetry start data
         telemetry.addData("[Front Right Motor Power]",
@@ -46,12 +43,6 @@ public class Ryan_Auto extends LinearOpMode
                 Back_Left.getPower());
         telemetry.addData("[Back Right Motor Power]",
                 Back_Right.getPower());
-        telemetry.addData("[Dead Wheel Left]",
-                Front_Right.getCurrentPosition());
-        telemetry.addData("[Dead Wheel Right]",
-                Front_Left.getCurrentPosition());
-        telemetry.addData( "[Dead Wheel Middle]",
-                Back_Left.getCurrentPosition());
         telemetry.update();
 
         waitForStart();
@@ -62,6 +53,6 @@ public class Ryan_Auto extends LinearOpMode
         Back_Right.setPower(0.5);
         Back_Left.setPower(0.5);
 
-        sleep(1000);
+        sleep(250);
     }
 }
