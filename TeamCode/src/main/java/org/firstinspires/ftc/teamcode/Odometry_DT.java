@@ -33,7 +33,7 @@ public class Odometry_DT extends OpMode
      */
 
     Servo   Drop_System;
-    DcMotor Snail;
+    //DcMotor Snail;
     //Ditto, but for our thrower and servo door.
     //Servo Servo_Holding;
     DcMotor Intake;
@@ -66,7 +66,8 @@ public class Odometry_DT extends OpMode
 
         //Servo_Holding = hardwareMap.servo.get("Servo_Holding");
         /*X_Axis = hardwareMap.dcMotor.get("X_Axis");
-        Snail = hardwareMap.dcMotor.get("Snail");
+        Y_Axis = hardwareMap.dcMotor.get("Y_Axis"); */
+        //Snail = hardwareMap.dcMotor.get("Snail");
         Intake = hardwareMap.dcMotor.get("Intake");
 
         Drop_System = hardwareMap.servo.get("Drop_System");
@@ -74,7 +75,7 @@ public class Odometry_DT extends OpMode
         /*
         This Hardware Mapping
          */
-        Intake.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
 
 
 //  This Hardware Mapping
@@ -132,50 +133,53 @@ public class Odometry_DT extends OpMode
         //This is fast strafe
 
         //Catapult Controls.
-        if (gamepad2.x)
+        /*if (gamepad2.x)
         {
             Snail.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             Snail.setTargetPosition(
-                    Snail.getCurrentPosition() + 360);
-            Snail.setPower(1);
+                Snail.getCurrentPosition() + 360);
+                Snail.setPower(1);
         } else
         {
             Snail.setPower(0);
-        }
+        } */
 
         //Intake System
-        if (gamepad2.y)
+        /*if (gamepad2.yWasPressed())
         {
             Intake.setPower(1);
         }
-        else if (gamepad2.a)
+        else if (gamepad2.aWasPressed())
         {
             Intake.setPower(-1);
+        }
+        else { Intake.setPower(0);
+        */
+
+        if (gamepad2.yWasPressed())
+        {
+            Intake.setPower(-1);
+        }
+        else if (gamepad2.aWasPressed())
+        {
+            Intake.setPower(0);
         }
 
         //Drop System
         if (gamepad2.right_trigger > 0.1)
         {
-            Drop_System.setPosition(22);
+            Drop_System.setPosition(1);
         }
         if (gamepad2.left_trigger > 0.1)
         {
-            Drop_System.setPosition(0);
+            Drop_System.setPosition(0.45);
         }
 
 
         //Telemetry Data
-        /*telemetry.addData("[Front Left Odometer]",
-                Front_Right.getCurrentPosition());
-        telemetry.addData("[Front Right Odometer]",
-                Back_Left.getCurrentPosition());
-        telemetry.addData("[Back Odometer]",
-                Front_Left.getCurrentPosition());
-        telemetry.addData("[X-Axis Odometer Position]",
-                X_Axis.getCurrentPosition());
-        telemetry.addData("[Y-Axis Odometer Position]",
-                Y_Axis.getCurrentPosition());
+        telemetry.addData("[Servo Position]",
+                Drop_System.getPosition());
         telemetry.update();
-         */
+
     }
 }
