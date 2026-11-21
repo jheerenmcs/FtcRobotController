@@ -66,7 +66,6 @@ public class Odometry_DT extends OpMode
 
         //Servo_Holding = hardwareMap.servo.get("Servo_Holding");
         /*X_Axis = hardwareMap.dcMotor.get("X_Axis");
-        Y_Axis = hardwareMap.dcMotor.get("Y_Axis"); */
         Snail = hardwareMap.dcMotor.get("Snail");
         Intake = hardwareMap.dcMotor.get("Intake");
 
