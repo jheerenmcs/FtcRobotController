@@ -56,6 +56,7 @@ public class Ryan_Auto extends LinearOpMode
 
         waitForStart();
 
+        //moving and direction
         Front_Right.setPower(-0.5);
         Front_Left.setPower(-0.5);
         Back_Right.setPower(-0.5);
