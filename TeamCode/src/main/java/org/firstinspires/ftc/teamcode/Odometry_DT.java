@@ -39,9 +39,10 @@ public class Odometry_DT extends OpMode
     DcMotor Intake;
 
 
-    //Odometry
+    /*Odometry
     DcMotor X_Axis;
     DcMotor Y_Axis;
+     */
 
     int time;
     //This initializes an integer (number) named time.
@@ -64,8 +65,8 @@ public class Odometry_DT extends OpMode
         Back_Right = hardwareMap.dcMotor.get("Back Right");
 
         //Servo_Holding = hardwareMap.servo.get("Servo_Holding");
-        X_Axis = hardwareMap.dcMotor.get("X_Axis");
-        Y_Axis = hardwareMap.dcMotor.get("Y_Axis");
+        /*X_Axis = hardwareMap.dcMotor.get("X_Axis");
+        Y_Axis = hardwareMap.dcMotor.get("Y_Axis"); */
         Snail = hardwareMap.dcMotor.get("Snail");
         Intake = hardwareMap.dcMotor.get("Intake");
 
@@ -165,7 +166,7 @@ public class Odometry_DT extends OpMode
 
 
         //Telemetry Data
-        telemetry.addData("[Front Left Odometer]",
+        /*telemetry.addData("[Front Left Odometer]",
                 Front_Right.getCurrentPosition());
         telemetry.addData("[Front Right Odometer]",
                 Back_Left.getCurrentPosition());
@@ -175,6 +176,7 @@ public class Odometry_DT extends OpMode
                 X_Axis.getCurrentPosition());
         telemetry.addData("[Y-Axis Odometer Position]",
                 Y_Axis.getCurrentPosition());
-        telemetry.update();        
+        telemetry.update();
+         */
     }
 }
