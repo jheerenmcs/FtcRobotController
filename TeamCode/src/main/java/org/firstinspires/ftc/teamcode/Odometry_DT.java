@@ -155,11 +155,11 @@ public class Odometry_DT extends OpMode
         }
 
         //Drop System
-        if (gamepad2.right_trigger)
+        if (gamepad2.right_trigger > 0.1)
         {
             Drop_System.setPosition(22);
         }
-        if (gamepad2.left_trigger)
+        if (gamepad2.left_trigger > 0.1)
         {
             Drop_System.setPosition(0);
         }
